@@ -1,0 +1,22 @@
+* SRFI 214: Flexvectors
+
+** by Adam Nelson
+
+
+
+keywords: [[https://srfi.schemers.org/?keywords=data-structure][Data Structure]]
+
+This repository hosts [[https://srfi.schemers.org/srfi-214/][SRFI 214]]: Flexvectors, a [[https://srfi.schemers.org/][Scheme Request for Implementation]].
+
+This SRFI is in /draft/ status.
+
+See also [[https://srfi.schemers.org/srfi-10/][SRFI 10: #, external form]], [[https://srfi.schemers.org/srfi-117/][SRFI 117: Queues based on lists]], [[https://srfi.schemers.org/srfi-125/][SRFI 125: Intermediate hash tables]], [[https://srfi.schemers.org/srfi-133/][SRFI 133: Vector Library (R7RS-compatible)]], [[https://srfi.schemers.org/srfi-134/][SRFI 134: Immutable Deques]], and [[https://srfi.schemers.org/srfi-158/][SRFI 158: Generators and Accumulators]].
+
+The full documentation for this SRFI can be found in the [[https://srfi.schemers.org/srfi-214/srfi-214.html][SRFI Document]].
+
+If you'd like to participate in the discussion of this SRFI, or report issues with it, please [[https://srfi.schemers.org/srfi-214/][join the SRFI-214 mailing list]] and send your message there.
+
+Thank you.
+
+
+[[mailto:srfi-editors@srfi.schemers.org][The SRFI Editors]]
