@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html><html lang="en"><head>
           <meta charset="utf-8">
           <title>SRFI 214: Flexvectors</title>
           <link href="/favicon.png" rel="icon" sizes="192x192" type="image/png">
@@ -180,7 +180,7 @@
 <p><code>flexvector-reverse-copy</code> is the same, but copies the elements in reverse order from <code>fv</code>.</p>
 <div class="copy-wrapper"><pre><code class="language-scheme"><span><span class="mtk1">(flexvector-reverse-copy&nbsp;(flexvector&nbsp;'a&nbsp;'b&nbsp;'c&nbsp;'d)&nbsp;</span><span class="mtk21">1</span><span class="mtk1">&nbsp;</span><span class="mtk21">4</span><span class="mtk1">)</span></span><br><span><span class="mtk4">;=&gt;&nbsp;#&lt;flexvector&nbsp;d&nbsp;c&nbsp;b&gt;</span></span><br></code></pre></div>
 <p>Both <code>start</code> and <code>end</code> are clamped to the range [0, <code>(flexvector-length fv)</code>). It is an error if <code>end</code> is less than <code>start</code>.</p>
-<p><code>flexvector-copy</code> shares the performance characteristics of <code>vector-copy</code>--in particular, if a given Scheme's <code>vector-copy</code> uses a fast <code>memcpy</code> operation instead of an element-by-element loop, <code>flexvector-copy</code> should also use this operation.</p>
+<p><code>flexvector-copy</code> shares the performance characteristics of <code>vector-copy</code> &mdash; in particular, if a given Scheme's <code>vector-copy</code> uses a fast <code>memcpy</code> operation instead of an element-by-element loop, <code>flexvector-copy</code> should also use this operation.</p>
 <h4 id="flexvector-append"><code>flexvector-append</code></h4>
 <p><code>(flexvector-append fv ...)</code></p>
 <p>Returns a newly allocated flexvector that contains all elements in order from the subsequent locations in <code>fv ...</code>.</p>
@@ -286,7 +286,7 @@
 <p><code>flexvector-reverse-copy!</code> is the same, but copies elements in reverse order.</p>
 <p><code>start</code> and <code>end</code> default to 0 and <code>(flexvector-length from)</code> if not present. Both <code>start</code> and <code>end</code> are clamped to the range [0, <code>(flexvector-length from)</code>]. It is an error if <code>end</code> is less than <code>start</code>.</p>
 <p>Unlike <code>vector-copy!</code>, <code>flexvector-copy!</code> may copy elements past the end of <code>to</code>, which will increase the length of <code>to</code>.</p>
-<p><code>flexvector-copy!</code> shares the performance characteristics of <code>vector-copy!</code>--in particular, if a given Scheme's <code>vector-copy!</code> uses a fast <code>memcpy</code> operation instead of an element-by-element loop, <code>flexvector-copy!</code> should also use this operation.</p>
+<p><code>flexvector-copy!</code> shares the performance characteristics of <code>vector-copy!</code> &mdash; in particular, if a given Scheme's <code>vector-copy!</code> uses a fast <code>memcpy</code> operation instead of an element-by-element loop, <code>flexvector-copy!</code> should also use this operation.</p>
 <p>Both procedures return <code>to</code> after mutating it.</p>
 <h3 id="iteration">Iteration</h3>
 <h4 id="flexvector-fold-flexvector-fold-right"><code>flexvector-fold</code>, <code>flexvector-fold-right</code></h4>
