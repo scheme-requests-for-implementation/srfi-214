@@ -38,7 +38,7 @@
           flexvector->vector flexvector->list flexvector->string
           vector->flexvector list->flexvector string->flexvector
           reverse-flexvector->list reverse-list->flexvector
-          generator->flexvector)
+          generator->flexvector flexvector->generator)
 
   (import (scheme base)
           (scheme case-lambda)

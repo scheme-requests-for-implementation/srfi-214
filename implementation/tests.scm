@@ -64,6 +64,24 @@
   (flexvector->vector (string->flexvector "abc")))
 (test-equal "flexvector->string" "abc" (flexvector->string (flexvector #\a #\b #\c)))
 
+(define genlist '(a b c))
+(define (mock-generator)
+  (if (pair? genlist)
+    (let ((value (car genlist)))
+      (set! genlist (cdr genlist))
+      value)
+    (eof-object)))
+
+(test-equal "generator->flexvector" #(a b c)
+  (flexvector->vector (generator->flexvector mock-generator)))
+(test-equal "flexvector->generator" '(a b c #t)
+  (let* ((gen (flexvector->generator (flexvector 'a 'b 'c)))
+         (one (gen))
+         (two (gen))
+         (three (gen))
+         (four (eof-object? (gen))))
+    (list one two three four)))
+
 ; Nondestructive operations on one vector
 (let ((fv (flexvector 10 20 30)))
   (test-equal "flexvector->vector" #(10 20 30) (flexvector->vector fv))
