@@ -389,3 +389,13 @@
 (define (generator->flexvector g)
   (assume (procedure? g))
   (flexvector-unfold eof-object? (lambda (x) x) (lambda (_) (g)) (g)))
+
+(define (flexvector->generator fv)
+  (assume (flexvector? fv))
+  (let ((i 0))
+    (lambda ()
+      (if (< i (flexvector-length fv))
+        (let ((element (flexvector-ref fv i)))
+          (set! i (+ i 1))
+          element)
+        (eof-object)))))
