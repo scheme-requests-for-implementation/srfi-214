@@ -293,4 +293,13 @@
 (test-equal "flexvector-reverse-copy! overflow" #(1 2 50 40 30)
   (mutate-as fv '#(1 2 3) (flexvector-reverse-copy! fv 2 (flexvector 30 40 50))))
 
+(test-equal "flexvector-fill!" '#(foo foo foo)
+  (mutate-as x '#(1 2 3) (flexvector-fill! x 'foo)))
+(test-equal "flexvector-fill! start" '#(1 2 bar bar bar)
+  (mutate-as x '#(1 2 3 4 5) (flexvector-fill! x 'bar 2)))
+(test-equal "flexvector-fill! start end" '#(1 2 baz baz 5)
+  (mutate-as x '#(1 2 3 4 5) (flexvector-fill! x 'baz 2 4)))
+(test-equal "flexvector-fill! clamped" '#(qux qux qux)
+  (mutate-as x '#(1 2 3) (flexvector-fill! x 'qux -1 10)))
+
 (test-end "Flexvectors")

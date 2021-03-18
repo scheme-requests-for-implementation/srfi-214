@@ -1,3 +1,4 @@
+
 (define flexvector-unfold
   (case-lambda
     ((p f g seed)
@@ -20,6 +21,18 @@
   (define fv (apply flexvector-unfold args))
   (flexvector-reverse! fv)
   fv)
+
+(define flexvector-fill!
+  (case-lambda
+    ((fv fill)
+      (flexvector-fill! fv fill 0 (flexvector-length fv)))
+    ((fv fill start)
+      (flexvector-fill! fv fill start (flexvector-length fv)))
+    ((fv fill start end)
+      (let ((actual-end (min end (flexvector-length fv))))
+        (do ((i (max 0 start) (+ i 1)))
+            ((>= i actual-end))
+          (flexvector-set! fv i fill))))))
 
 (define (flexvector-reverse-copy . args)
   (define fv (apply flexvector-copy args))
@@ -97,7 +110,7 @@
           (if (>= i len)
               acc
               (lp (+ i 1)
-                  (apply kons acc (flexvector-ref v1 i)
+                  (apply kons acc (flexvector-ref fv1 i)
                          (map (lambda (fv) (flexvector-ref fv i)) o))))))))
 
 (define (flexvector-fold-right kons knil fv1 . o)
@@ -111,7 +124,7 @@
           (if (negative? i)
               acc
               (lp (- i 1)
-                  (apply kons acc (flexvector-ref v1 i)
+                  (apply kons acc (flexvector-ref fv1 i)
                          (map (lambda (fv) (flexvector-ref fv i)) o))))))))
 
 (define flexvector-for-each/index
@@ -308,14 +321,6 @@
       (else
         (flexvector-swap! fv left right)
         (lp (+ left 1) (- right 1))))))
-
-(define (flexvector-reverse-copy! to at from . o)
-  (let ((start (if (pair? o) (car o) 0))
-        (end (if (and (pair? o) (pair? (cdr o)))
-                 (cadr o)
-                 (flexvector-length from))))
-    (flexvector-copy! to at from start end)
-    (flexvector-reverse! to at (+ at (- end start)))))
 
 (define (flexvector-append fv . fvs)
   (assume (flexvector? fv))
