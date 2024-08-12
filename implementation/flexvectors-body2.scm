@@ -369,9 +369,20 @@
       fv)
     (values left right)))
 
-(define (flexvector->list fv)
-  (assume (flexvector? fv))
-  (flexvector-fold-right (lambda (x y) (cons y x)) '() fv))
+(define flexvector->list
+  (case-lambda
+    ((fv)
+     (flexvector->list fv 0 (flexvector-length fv)))
+    ((fv start)
+     (flexvector->list fv start (flexvector-length fv)))
+    ((fv start end)
+     (if (< end start)
+       (error "invalid start/end specification")
+       (let lp ((acc '()) (idx (- end 1)))
+         (if (< idx start)
+           acc
+           (lp (cons (vector-ref (vec fv) idx) acc)
+               (- idx 1))))))))
 
 (define (reverse-flexvector->list fv . o)
   (assume (flexvector? fv))

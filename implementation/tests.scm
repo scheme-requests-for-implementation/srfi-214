@@ -86,6 +86,9 @@
 (let ((fv (flexvector 10 20 30)))
   (test-equal "flexvector->vector" #(10 20 30) (flexvector->vector fv))
   (test-equal "flexvector->list" '(10 20 30) (flexvector->list fv))
+  (test-equal "flexvector->list sublist" '(10 20) (flexvector->list fv 0 2))
+  (test-equal "flexvector->list omitted end" '(20 30) (flexvector->list fv 1))
+  (test-equal "flexvector->list same index" '() (flexvector->list fv 1 1))
   (test-equal "reverse-flexvector->list" '(30 20 10) (reverse-flexvector->list fv))
   (test-equal "flexvector-copy" #t
     (let ((copy (flexvector-copy fv)))
